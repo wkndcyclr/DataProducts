@@ -1,0 +1,28 @@
+---
+title: "Shiny Model Instructions"
+date: "August 29, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+This shiny application creates a linear regression model on the mtcars data set, with  `mpg` as the outcome variable and a user selected input variable from any of the remaining continuous variables in the mtcars data. Both graphical and tabular output of the model is available. 
+
+Additionally, the user can: 
+
+- Choose whether to display the tabular model summary
+- Explore the plot of the model, as it is an interactive plot
+
+## Instructions
+
+1. Select the predictor variable by choosing one from the dropdown in the sidebar
+2. Check or uncheck the box to display/hide the model summary, again in the sidebar
+3. Change the predictor variable or hide/unhide selection
+4. Explore the plot by hovering over it.
+      - Examine any of the points or boundaries on the confidence band
+      - Choose any of the functions in the tool bar that appears over the plot
+
