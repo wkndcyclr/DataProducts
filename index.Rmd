@@ -9,32 +9,51 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE, message = FALSE, warning = FALSE)
 ```
 
-## R Markdown
-Plain  
-***italics***  
-**bold**  
-`code <- example`  
+## Overview
 
-### Top subheading
+This shiny application creates a linear regression model on the mtcars data set, with  `mpg` as the outcome variable and a user selected input variable from any of the remaining continuous variables in the mtcars data. Both graphical and tabular output of the model is available. 
 
-#### Next Subheading
+Additionally, the user can: 
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+- Choose whether to display the tabular model summary
+- Explore the plot of the model, as it is an interactive plot
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+## Instructions
 
-***
-New slide
+- The application itself is hosted on Rstudio's site at:  
+https://wkndcyclr.shinyapps.io/developingdataproducts/  
 
+- Instructions for using that application are in the instructctions and on github:  
+      * https://github.com/wkndcyclr/DataProducts       
 
-## Slide with R Output
+- The code for the application can be found at this same github site in the files
 
-```{r cars, echo = TRUE, comment = "",}
-summary(cars)
+      * `ui.R`  
+      * `server.R`
+
+## New coding techniques
+This application required several commands and techniques not directly used in the class:  
+
+- Imbedding plotly output via `renderPlotly` and `ggplotly`
+- Formatting the model output of `summary()`  via `verbatimTextOutput`
+- Taking input in a selection list via `selectInput`
+- Using a variable predictor `x` inside a model commmand via the following code:
+```{r modelcode, eval=FALSE}
+      x <- input$selectx
+      y <- "mpg"
+      lmvars <- paste(y,x, sep = " ~ ")
+      lm(as.formula(lmvars),  data = mtcars)
 ```
-
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
+## Example
+####Model summary with a randomized input variable simulating selection in Shiny
+```{r example, echo=FALSE, comment=""}
+data(mtcars)
+mtnames <- c("wt","hp","qsec","disp","drat")
+n <-sample(1:5, 1)
+y <- "mpg"
+x <- mtnames[n]
+lmvars <- paste(y,x, sep = " ~ ")
+fit <- lm(as.formula(lmvars),  data = mtcars)
+cat(paste('Randomized value for predictor is:', x, sep = " "))
+summary(fit)
 ```
