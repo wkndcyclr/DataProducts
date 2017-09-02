@@ -1,4 +1,6 @@
 library(shiny)
+library(plotly)
+mtnames <- c("wt","hp","qsec","disp","drat")
 shinyUI(fluidPage(
       titlePanel("Fit a Linear Model for a Selected Variable"),
       sidebarLayout(

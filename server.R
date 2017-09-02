@@ -1,9 +1,8 @@
 library(shiny)
 library(plotly)
-library(ggplot2)
 shinyServer(function(input, output) {
+      data(mtcars)
       mtnames <- c("wt","hp","qsec","disp","drat")
-
       fit <- reactive({
             x <- input$selectx
             y <- "mpg"
