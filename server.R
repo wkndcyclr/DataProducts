@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
 
 
       output$summ1 <- renderPrint({
-           if(input$showsummary) {summary(fit())} else {"Summary Not Selected"}
+           if(input$showsummary) {summary(fit())} else {cat("Summary Not Selected")}
 
       })
 })
